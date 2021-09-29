@@ -2,6 +2,7 @@ from tkinter.constants import N
 from tkinter.messagebox import NO
 from pycoingecko import CoinGeckoAPI
 import pandas as pd
+import threading
 cg = CoinGeckoAPI()
 
 class Crypto_Details:
