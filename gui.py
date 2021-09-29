@@ -34,8 +34,6 @@ coin_text = tk.StringVar()
 coin_entry = tk.Entry(root, textvariable=coin_text)
 coin_entry.grid(row=0, column=0, padx=3, pady=3)
 
-
-
 #button search coin    
 Search = tk.Button(root, text="Search Coin",command=search_coin_clicked)
 Search.grid(row=1, column=0, padx = 0, pady = 0)
