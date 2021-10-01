@@ -22,8 +22,8 @@ def search_coin_clicked():
             price["text"] = kot.find_crypto_price(coin.lower())[coin.lower()]['usd']
             
 def generate_data():
-    start_date = mycal1.get_date()
-    end_date = mycal2.get_date()
+    date = mycal1.get_date()
+    print(date)
     #make the code to download the data as csv
 
 
@@ -55,21 +55,12 @@ price = tk.Label(root,text = "",font=("bold", 12))
 price.grid(row=8,column=4)
 
 #date selection for price history
-l2 = tk.Label(root,text = "Select date length for price and other history",font=("bold", 14))
+l2 = tk.Label(root,text = "Select date for price and other history",font=("bold", 14))
 l2.grid(row=100,column=0)
-
-    #start date
-l3 = tk.Label(root,text = "Start date & End Date",font=("bold", 14))
-l3.grid(row=200,column=0)
 mycal1 = Calendar(root,setmode="day", date_pattern = 'd/m/yy')
-mycal1.place(x=0, y=200)
-
-    #end date
-mycal2 = Calendar(root,setmode="day", date_pattern = 'd/m/yy')
-mycal2.place(x=300, y=200)
-    #button to generate the datas
+mycal1.place(x=220, y=170)
 Generate_Data = tk.Button(root, text="Generate Data",command=generate_data)
-Generate_Data.grid(row=100, column=800)
+Generate_Data.grid(row=4000, column=0)
 
 #update the price every 5 seconds
 def rep():
