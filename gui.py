@@ -7,13 +7,13 @@ from tkcalendar import *
 from crypto_details import * 
 
 root = tk.Tk()
-coin_name = ""
+# coin_name = ""
 def search_coin_clicked():
     if coin_text.get() == "":
         pass
     else:
         coin = coin_text.get()
-        coin_name = coin
+        # coin_name = coin
         kot = Crypto_Details(coin.lower())
         if kot.find_crypto_price(coin.lower()) == None:
             messagebox.showerror("Error", "Your coin does not exist")
@@ -23,8 +23,9 @@ def search_coin_clicked():
             
 def generate_data():
     date = mycal1.get_date()
-    print(date)
-    #make the code to download the data as csv
+    kot = Crypto_Details(coin_text.get().lower())
+    data = kot.generate_data(date,coin_text.get().lower())
+    print(data)
 
 
 #title
