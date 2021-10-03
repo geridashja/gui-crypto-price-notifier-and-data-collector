@@ -1,8 +1,6 @@
 import tkinter as tk
 from tkinter import mainloop, messagebox
-from PIL import Image, ImageTk
 import re
-import os,sys
 import time
 from tkcalendar import *
 from crypto_details import * 
@@ -29,10 +27,6 @@ def generate_data():
     # print(data)
     print("Generate data button pressed!")
     pass
-
-def notify():
-    price = price_text.get()
-    print(price)
 
 def add_emails_window():
     print("New Window Button Opened")
@@ -68,14 +62,12 @@ def add_emails_window():
     Add = tk.Button(newWindow, text="Add",command=get_emails)
     Add.grid(row=8, column=0, padx = 0, pady = 10)
 
+credentials = []
 def get_emails():
-    #check the edge cases for errors
+    global sender_email,sender_password,main_email
     sender_email = email_text.get()
     sender_password = password_text.get()
     main_email = main_email_text.get()
-    # print(sender_email)
-    # print(sender_password)
-    # print(main_email)
     email_regex = re.compile(r"[^@]+@[^@]+\.[^@]+")
     if (sender_email == "") or (sender_password == "") or (main_email == ""):
         messagebox.showerror("Error", "You must fill all the fields")
@@ -85,12 +77,27 @@ def get_emails():
         elif email_regex.match(sender_email) == False:
             messagebox.showerror("Error", "Please enter a valid email")
         else:
-            price = int(price_text.get())
-            notify = Send_Mail(sender_email,sender_password,main_email)
+            newWindow.destroy()
+    credentials.append(sender_email)
+    credentials.append(sender_password)
+    credentials.append(main_email)
+
+def notify():
+    if credentials == []:
+        pass
+    else:
+        sender_email = credentials[0]
+        sender_password = credentials[1]
+        main_email = credentials[2]
+        notify = Send_Mail(sender_email,sender_password,main_email)
+        if(float(price_text.get()) == float(price["text"])):
+            print("EQUAL")
             notify.send_main()
-            print(price)
-            print(type(price))
-    newWindow.destroy()
+            tk.messagebox.showinfo("BUY IT", "EMAIL SENT")
+            time.sleep(2)
+            root.destroy()
+        else:
+            print("Waiting desired price!")
 #title
 root.title("CPNDC")
 root.geometry("1000x600")
@@ -144,8 +151,9 @@ New_Window.grid(row=400, column=0,pady=(20,0))
 #update the price every 5 seconds
 def rep():
     search_coin_clicked()
-    print(price["text"])
+    notify()
     root.after(5000, rep)
+
 root.after(5000, rep)
 
 root.mainloop()
