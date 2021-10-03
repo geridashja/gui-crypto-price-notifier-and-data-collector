@@ -7,7 +7,6 @@ from tkcalendar import *
 from crypto_details import * 
 
 root = tk.Tk()
-# coin_name = ""
 def search_coin_clicked():
     if coin_text.get() == "":
         pass
@@ -32,7 +31,44 @@ def generate_data():
 def notify():
     price = price_text.get()
     print(price)
-    
+
+def add_emails_window():
+    print("New Window Button Opened")
+    newWindow = tk.Toplevel(root)
+    newWindow.title("Add Emails for Notifications")
+    newWindow.geometry("400x400")
+    newWindow.iconphoto(False, tk.PhotoImage(file='icons\icon.png'))
+    tk.Label(newWindow).grid()
+
+    global email_text
+    global password_text
+    global main_email_text
+    #1
+    l1 = tk.Label(newWindow,text = "Sender Email",font=("bold", 18))
+    l1.grid(row=0,column=0, padx=0, pady=0)
+    email_text = tk.StringVar()
+    email_entry = tk.Entry(newWindow, textvariable=email_text)
+    email_entry.grid(row=1, column=0, padx=0, pady=(10,0))
+    #2
+    l2 = tk.Label(newWindow,text = "Password of Sender",font=("bold", 18))
+    l2.grid(row=3,column=0, padx=0, pady=0)
+    password_text = tk.StringVar()
+    password_entry = tk.Entry(newWindow, textvariable=password_text)
+    password_entry.grid(row=4, column=0, padx=0, pady=(10,0))
+    #3
+    l3 = tk.Label(newWindow,text = "Main Email",font=("bold", 18))
+    l3.grid(row=5,column=0, padx=0, pady=0)
+    main_email_text = tk.StringVar()
+    main_email_entry = tk.Entry(newWindow, textvariable=main_email_text)
+    main_email_entry.grid(row=6, column=0, padx=0, pady=(10,0))
+    #button
+    Add = tk.Button(newWindow, text="Add",command=get_emails)
+    Add.grid(row=8, column=0, padx = 0, pady = 10)
+
+def get_emails():
+    email = email_text.get()
+    print(email)
+    # newWindow.destroy()
 #title
 root.title("CPNDC")
 root.geometry("1000x600")
@@ -71,7 +107,6 @@ price_entry.grid(row=110, column=0, padx=0, pady=0)
 Set_Notifier = tk.Button(root, text="Set Notifier",command=notify)
 Set_Notifier.grid(row=120, column=0,pady=0)
 
-
 #date selection for price history
 l3 = tk.Label(root,text = "Select date for price and other history",font=("bold", 14))
 l3.grid(row=0,column=100,padx=(300,0))
@@ -80,6 +115,9 @@ mycal1.place(x=450, y=40)
 Generate_Data = tk.Button(root, text="Generate Data",command=generate_data)
 Generate_Data.grid(row=120, column=100,padx=(300,0))
 
+# new window button
+New_Window = tk.Button(root, text="Add Emails for Notifications",command=add_emails_window)
+New_Window.grid(row=400, column=0,pady=(20,0))
 
 #update the price every 5 seconds
 def rep():
@@ -88,7 +126,7 @@ def rep():
     root.after(5000, rep)
 root.after(5000, rep)
 
-
 #new window for adding sender, password of sender and your main email
+
 
 root.mainloop()

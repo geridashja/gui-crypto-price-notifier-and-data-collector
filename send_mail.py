@@ -32,7 +32,6 @@ class Send_Mail():
             <p>Hi,<br>
             This is a reminder that your coin has reached the price you want to buy it. BUYYYYY THE DIPPPPPPPPPPPP<br>
             <a href="https://www.binance.com/en">Binance</a>
-            has many great tutorials.
             </p>
         </body>
         </html>
