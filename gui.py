@@ -1,10 +1,12 @@
 import tkinter as tk
 from tkinter import mainloop, messagebox
 from PIL import Image, ImageTk
+import re
 import os,sys
 import time
 from tkcalendar import *
 from crypto_details import * 
+
 
 root = tk.Tk()
 def search_coin_clicked():
@@ -12,7 +14,6 @@ def search_coin_clicked():
         pass
     else:
         coin = coin_text.get()
-        # coin_name = coin
         kot = Crypto_Details(coin.lower())
         if kot.find_crypto_price(coin.lower()) == None:
             messagebox.showerror("Error", "Your coin does not exist")
@@ -71,9 +72,19 @@ def get_emails():
     sender_email = email_text.get()
     sender_password = password_text.get()
     main_email = main_email_text.get()
-    print(sender_email)
-    print(sender_password)
-    print(main_email)
+    # print(sender_email)
+    # print(sender_password)
+    # print(main_email)
+    email_regex = re.compile(r"[^@]+@[^@]+\.[^@]+")
+    if (sender_email == "") or (sender_password == "") or (main_email == ""):
+        messagebox.showerror("Error", "You must fill all the fields")
+    else:
+        if email_regex.match(sender_email) == False:
+            messagebox.showerror("Error", "Please enter a valid email")
+        elif email_regex.match(sender_email) == False:
+            messagebox.showerror("Error", "Please enter a valid email")
+        else:
+            pass
     newWindow.destroy()
 #title
 root.title("CPNDC")
@@ -131,8 +142,5 @@ def rep():
     print(price["text"])
     root.after(5000, rep)
 root.after(5000, rep)
-
-#new window for adding sender, password of sender and your main email
-
 
 root.mainloop()
