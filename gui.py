@@ -6,6 +6,7 @@ import os,sys
 import time
 from tkcalendar import *
 from crypto_details import * 
+from send_mail import *
 
 
 root = tk.Tk()
@@ -84,7 +85,11 @@ def get_emails():
         elif email_regex.match(sender_email) == False:
             messagebox.showerror("Error", "Please enter a valid email")
         else:
-            pass
+            price = int(price_text.get())
+            notify = Send_Mail(sender_email,sender_password,main_email)
+            notify.send_main()
+            print(price)
+            print(type(price))
     newWindow.destroy()
 #title
 root.title("CPNDC")
