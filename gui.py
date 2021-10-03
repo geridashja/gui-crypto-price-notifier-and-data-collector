@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import messagebox
+from tkinter import mainloop, messagebox
 from PIL import Image, ImageTk
 import os,sys
 import time
@@ -34,6 +34,7 @@ def notify():
 
 def add_emails_window():
     print("New Window Button Opened")
+    global newWindow
     newWindow = tk.Toplevel(root)
     newWindow.title("Add Emails for Notifications")
     newWindow.geometry("400x400")
@@ -66,9 +67,14 @@ def add_emails_window():
     Add.grid(row=8, column=0, padx = 0, pady = 10)
 
 def get_emails():
-    email = email_text.get()
-    print(email)
-    # newWindow.destroy()
+    #check the edge cases for errors
+    sender_email = email_text.get()
+    sender_password = password_text.get()
+    main_email = main_email_text.get()
+    print(sender_email)
+    print(sender_password)
+    print(main_email)
+    newWindow.destroy()
 #title
 root.title("CPNDC")
 root.geometry("1000x600")
