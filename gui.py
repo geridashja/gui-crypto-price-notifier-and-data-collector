@@ -22,10 +22,12 @@ def search_coin_clicked():
             price["text"] = kot.find_crypto_price(coin.lower())[coin.lower()]['usd']
             
 def generate_data():
-    date = mycal1.get_date()
-    kot = Crypto_Details(coin_text.get().lower())
-    data = kot.generate_data(date,coin_text.get().lower())
-    print(data)
+    # date = mycal1.get_date()
+    # kot = Crypto_Details(coin_text.get().lower())
+    # data = kot.generate_data(date,coin_text.get().lower())
+    # print(data)
+    print("Generate data button pressed!")
+    pass
 
 def notify():
     price = price_text.get()
@@ -73,15 +75,11 @@ Set_Notifier.grid(row=120, column=0,pady=0)
 #date selection for price history
 l3 = tk.Label(root,text = "Select date for price and other history",font=("bold", 14))
 l3.grid(row=0,column=100,padx=(300,0))
-# mycal1 = Calendar(root,setmode="day", date_pattern = 'd/m/yy')
-# mycal1.place(x=220, y=200,padx=(100,0))
+mycal1 = Calendar(root,setmode="day", date_pattern = 'd/m/yy')
+mycal1.place(x=450, y=40)
 Generate_Data = tk.Button(root, text="Generate Data",command=generate_data)
-Generate_Data.grid(row=1, column=100,padx=(300,0))
+Generate_Data.grid(row=120, column=100,padx=(300,0))
 
-
-# #price you want to get notified
-# l3 = tk.Label(root,text = "Price to get notified",font=("bold", 14))
-# l3.grid(row=0,column=70)
 
 #update the price every 5 seconds
 def rep():
