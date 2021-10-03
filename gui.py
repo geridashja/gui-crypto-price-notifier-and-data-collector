@@ -51,11 +51,11 @@ Search = tk.Button(root, text="Search Coin",command=search_coin_clicked)
 Search.grid(row=2, column=0, padx = 0, pady = 0)
 
 #text for coin name
-Coin_Name = tk.Label(root,text = "",font=("bold", 18))
+Coin_Name = tk.Label(root,text = "",font=("bold", 18),fg ="green")
 Coin_Name.grid(row=0,column=90,padx = 100)
 
 #text for price
-price = tk.Label(root,text = "",font=("bold", 12))
+price = tk.Label(root,text = "",font=("bold", 12),fg ="green")
 price.grid(row=1,column=90,padx = 100)
 
 #date selection for price history
