@@ -21,12 +21,10 @@ def search_coin_clicked():
             price["text"] = kot.find_crypto_price(coin.lower())[coin.lower()]['usd']
             
 def generate_data():
-    # date = mycal1.get_date()
+    date = date_duration.get()
     # kot = Crypto_Details(coin_text.get().lower())
     # data = kot.generate_data(date,coin_text.get().lower())
-    # print(data)
-    print("Generate data button pressed!")
-    pass
+    print(date)
 
 def add_emails_window():
     print("New Window Button Opened")
@@ -137,12 +135,16 @@ Set_Notifier = tk.Button(root, text="Set Notifier",command=notify)
 Set_Notifier.grid(row=120, column=0,pady=0)
 
 #date selection for price history
-l3 = tk.Label(root,text = "Select date for price and other history",font=("bold", 14))
+l3 = tk.Label(root,text = "Select Historical Data Duration",font=("bold", 14))
 l3.grid(row=0,column=100,padx=(300,0))
-mycal1 = Calendar(root,setmode="day", date_pattern = 'd/m/yy')
-mycal1.place(x=450, y=40)
+
+date_duration = tk.StringVar()
+date_duration.set("Daily Data")
+drop = tk.OptionMenu(root,date_duration,"Daily Data", "Weekly Data","Monthly Data")
+drop.grid(row=1, column=100,padx=(300,0))
+
 Generate_Data = tk.Button(root, text="Generate Data",command=generate_data)
-Generate_Data.grid(row=120, column=100,padx=(300,0))
+Generate_Data.grid(row=4, column=100,padx=(300,0))
 
 # new window button
 New_Window = tk.Button(root, text="Add Emails for Notifications",command=add_emails_window)
@@ -152,6 +154,7 @@ New_Window.grid(row=400, column=0,pady=(20,0))
 def rep():
     search_coin_clicked()
     notify()
+    print(price["text"])
     root.after(5000, rep)
 
 root.after(5000, rep)
