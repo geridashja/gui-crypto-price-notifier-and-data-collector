@@ -21,10 +21,14 @@ def search_coin_clicked():
             price["text"] = kot.find_crypto_price(coin.lower())[coin.lower()]['usd']
             
 def generate_data():
+    coin = coin_text.get()
     date = date_duration.get()
-    # kot = Crypto_Details(coin_text.get().lower())
-    # data = kot.generate_data(date,coin_text.get().lower())
-    print(date)
+    details = Crypto_Details(coin_text.get().lower())
+    kot = cg.get_coin_by_id(id=coin.lower())
+    coin_symbol = kot['symbol']
+    data = details.generate_data(date,coin_symbol)
+    # coin_cap = coin.title()
+    # print(coin_symbol)
 
 def add_emails_window():
     print("New Window Button Opened")
