@@ -27,6 +27,8 @@ def generate_data():
     kot = cg.get_coin_by_id(id=coin.lower())
     coin_symbol = kot['symbol']
     data = details.generate_data(date,coin_symbol)
+    
+        
     # coin_cap = coin.title()
     # print(coin_symbol)
 

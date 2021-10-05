@@ -35,18 +35,26 @@ class Crypto_Details:
             return None
     
     def generate_data(self,data,symbol):
+        index_name = data
+        time_s = ""
         if data == "Daily Data":
             data = "DIGITAL_CURRENCY_DAILY"
+            time_s = "Daily"
         if data == "Weekly Data":
             data = "DIGITAL_CURRENCY_WEEKLY"
+            time_s = "Weekly"
         if data == "Monthly Data":
             data = "DIGITAL_CURRENCY_MONTHLY"
+            time_s = "Monthly"
 
-        # querystring['symbol'] = symbol
-        # querystring['function'] = data
+        querystring['symbol'] = symbol
+        querystring['function'] = data
         response = requests.request("GET", url, headers=headers, params=querystring)
-        if(response):
-            print(response.text)
-        else:
-            print("No response")
-
+        data_json = json.loads(response.text)
+        time_series = "Time Series (Digital Currency " + time_s+")"
+        df = pd.json_normalize(data_json[time_series])
+        df2 = pd.DataFrame(df)
+        df_trans = df2.transpose()
+        df_trans.columns=["Price Info"]
+        df_trans.index.rename(index_name+ ' low,high,etc', inplace=True)
+        df_trans.to_csv(symbol+ "_" + time_s+ ".csv")
