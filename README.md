@@ -1,9 +1,11 @@
 # gui-crypto-price-notifier-and-data-collector
 
-This app is used to notify the user when the price of a current crypto is at bying level.
+This app is used to notify the user through email when the price of a current crypto is at a specific BUY level during a DIP.
 
 ## Installation
 
 pip install pycoingecko
 
-## Usage 
+## RUN
+
+python gui.py
